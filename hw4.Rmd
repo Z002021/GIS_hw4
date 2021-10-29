@@ -44,6 +44,12 @@ csv <- read_csv(here("data","Gender Inequality Index (GII).csv"),
 Creating a new column of difference in inequality between 2010 and 2019, and change country name to country code, using the 'countrycode' package
 
 ```{r}
+csv_diff <- csv%>%
+  clean_names()%>%
+  select(country,x2010,x2019)%>%
+  mutate(diff_gender =x2010-x2019) %>%
+  slice(1:189,)%>%
+  mutate(iso_code=countrycode(country, origin='country.name',destination = 'iso2c'))
 
 ```
 
@@ -52,6 +58,11 @@ Creating a new column of difference in inequality between 2010 and 2019, and cha
 Join the new column of difference in inequality between 2010 and 2019 to spatial data of the World
 
 ```{r}
+joined_data <- shape %>% 
+  clean_names() %>%
+  left_join(., 
+            csv_diff,
+            by = c("aff_iso"= "iso_code"))
 
 ```
 
