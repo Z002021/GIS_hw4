@@ -1,0 +1,57 @@
+# Homework for week 4
+
+## Reproduce
+
+### package versions
+
+```{r first, eval=FALSE}
+# a snapshot have been taken
+#renv::snapshot()
+
+#install the same packages
+#renv::restore()
+```
+
+* The library is already synchronised with the lockfile
+
+### Read in data:
+
+Located within the data folder:
+
+* HDI data from: http://hdr.undp.org/en/indicators/68606#
+* Shapefile from: https://hub.arcgis.com/datasets/2b93b06dc0dc4e809d3c8db5cb96ba69_0/explore?location=-2.688200%2C0.000000%2C1.41
+
+## Load packages
+```{r}
+library(sf)
+library(tidyverse)
+library(janitor)
+library(readr)
+library(here)
+library(countrycode)
+```
+
+## Read data
+```{r}
+shape <- st_read(here("data","World_Countries_(Generalized)","World_Countries__Generalized_.shp"))
+
+csv <- read_csv(here("data","Gender Inequality Index (GII).csv"), 
+                     locale = locale(encoding = "latin1"),
+                     na = "..", skip = 5)
+```
+## Select data
+
+Creating a new column of difference in inequality between 2010 and 2019, and change country name to country code, using the 'countrycode' package
+
+```{r}
+
+```
+
+## Join
+
+Join the new column of difference in inequality between 2010 and 2019 to spatial data of the World
+
+```{r}
+
+```
+
