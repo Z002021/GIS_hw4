@@ -6,7 +6,7 @@
 
 ```{r first, eval=FALSE}
 # a snapshot have been taken
-#renv::snapshot()
+# renv::snapshot()
 
 #install the same packages
 #renv::restore()
